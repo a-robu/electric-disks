@@ -27,8 +27,8 @@ sim.run = function ()
     if (constant.paused == true) {return}
     sim.canvas = document.getElementById("balls_canvas")
     sim.context = sim.canvas.getContext("2d")
-    sim.canvas.width = document.documentElement.clientWidth
-    sim.canvas.height = document.documentElement.clientHeight
+    sim.canvas.width = window.innerWidth
+    sim.canvas.height = window.innerHeight
     sim.list = new Array
     for (i=0; i < initial_balls; i++)
     {
@@ -120,8 +120,8 @@ sim.run = function ()
                                     }, false)
     sim.canvas.addEventListener("click", function(e) {sim.list.push(new ball(sim.list.length-1, sim.mouse_x, sim.mouse_y+40))}, false)
     window.addEventListener("resize",function(e) {
-                            sim.canvas.width = document.documentElement.clientWidth;
-                            sim.canvas.height = document.documentElement.clientHeight
+                            sim.canvas.width = window.innerWidth;
+                            sim.canvas.height = window.innerHeight
                         },false)
     window.addEventListener("keydown", function(e) {if (e.keyCode == 32) constant.paused = !constant.paused})
     			    
