@@ -11,3 +11,11 @@ Navigate to https://a-robu.github.io/balls-toy/ to play with the toy.
 The interactions available to the player are the following:
 - Move the mouse to nudge the balls.
 - Click to shoot down a ball.
+
+# Developing
+
+(curently this step is undocumented)
+
+```bash
+parcel index.html
+```
