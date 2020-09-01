@@ -1,0 +1,29 @@
+
+# This config file is adapted from the example in the documentation
+# https://github.com/marketplace/actions/deploy-to-github-pages#getting-started-airplane
+
+name: Build and Deploy
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+        # The documentation template that this file is based on had this node:
+        # "If you're using actions/checkout@v2 you must set persist-credentials 
+        # to false in most cases for the deployment to work correctly."
+        with:
+          persist-credentials: false
+
+      - name: Move to build/ directory 🔧
+        run: |
+            mkdir -p build
+            cp index.html balls.js build/.
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.5.9
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: build
