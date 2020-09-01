@@ -8,6 +8,6 @@ This is a simple mouse toy with coloured, bouncy balls. It is one of the program
 
 Navigate to https://a-robu.github.io/balls-toy/ to play with the toy.
 
-The interavtions available to the player are the following:
+The interactions available to the player are the following:
 - Move the mouse to nudge the balls.
 - Click to shoot down a ball.
