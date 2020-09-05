@@ -27,7 +27,7 @@ function ball(i, x, y)
     this.mass = (this.size*this.size*3.14)/10
 }
 
-const spawn_balls = n => {
+function spawn_balls(n) {
     let balls = []
     for (i=0; i < n; i++)
     {
