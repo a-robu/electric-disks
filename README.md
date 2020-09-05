@@ -6,7 +6,7 @@ This is a simple mouse toy with coloured, bouncy balls. It is one of the program
 
 # Playing with the Toy
 
-Navigate to https://a-robu.github.io/balls-toy/ to play with the toy.
+Navigate to https://andreirobu.uk/electric-disks/ to play with the toy.
 
 The interactions available to the player are the following:
 - Move the mouse to nudge the balls.
