@@ -60,12 +60,14 @@ function apply_force(vec, a_ball) {
     a_ball.fy += vec.y
 }
 
-function apply_wall_force(ball) {
+function wall_force(ball) {
     // collision with the walls
-    if (ball.x - ball.size < 0)                 {ball.fx -= (ball.x - ball.size)*constant.elastic}
-    if (ball.x + ball.size > sim.canvas.width)  {ball.fx -= (ball.x +ball.size - sim.canvas.width)*constant.elastic}
-    if (ball.y - ball.size < 0)                 {ball.fy -= (ball.y - ball.size)*constant.elastic}
-    if (ball.y + ball.size > sim.canvas.height) {ball.fy -= (ball.y + ball.size - sim.canvas.height)*constant.elastic}
+    let f = new Victor(0, 0)
+    if (ball.x - ball.size < 0)                 {f.x -= (ball.x - ball.size)*constant.elastic}
+    if (ball.x + ball.size > sim.canvas.width)  {f.x -= (ball.x +ball.size - sim.canvas.width)*constant.elastic}
+    if (ball.y - ball.size < 0)                 {f.y -= (ball.y - ball.size)*constant.elastic}
+    if (ball.y + ball.size > sim.canvas.height) {f.y -= (ball.y + ball.size - sim.canvas.height)*constant.elastic}
+    return f
 }
 
 function apply_mouse_force(ball) {
@@ -109,8 +111,7 @@ sim.run = function ()
             {
                 apply_force_pair(sim.list[i], sim.list[o])                    
             }
-
-            apply_wall_force(sim.list[i])
+            apply_force(wall_force(sim.list[i]), sim.list[i])
             apply_mouse_force(sim.list[i])
         }
 
