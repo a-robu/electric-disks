@@ -1,8 +1,5 @@
 
-// This does not do anything, other than prove
-// the build process is working.
-const Vec2 = require('./vec2');
-(new Vec2(1, 0));
+const Victor = require('victor');
 
 var constant = new Object()
 constant.friction = 1.02
@@ -15,6 +12,10 @@ initial_balls = 100
 
 function ball(i, x, y)
 {
+    // this is the legacy version of representing the ball, without
+    // using vectors. the usage of this "class" is being replaced 
+    // by Disk. When the conversion is complete, this "class" will
+    // be deleted.
     this.id = i
     this.x = x
     this.y = y
@@ -52,6 +53,11 @@ function apply_force_pair(ball_a, ball_b) {
         ball_a.fy += dy*penet/dist*constant.elastic
         ball_b.fy -= dy*penet/dist*constant.elastic 
     }
+}
+
+function apply_force(vec, a_ball) {
+    a_ball.fx += vec.x
+    a_ball.fy += vec.y
 }
 
 function apply_wall_force(ball) {
@@ -146,3 +152,6 @@ sim.run = function ()
     			    
     setInterval(sim.update, 1000/100)
 }
+
+exports.apply_force = apply_force
+exports.ball = ball
