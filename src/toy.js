@@ -27,6 +27,24 @@ function ball(i, x, y)
     this.mass = (this.size*this.size*3.14)/10
 }
 
+function apply_force_pair(ball_a, ball_b) {
+    var dx = (ball_a.x-ball_b.x)
+    var dy = (ball_a.y-ball_b.y)
+    var dist = Math.sqrt(dx*dx + dy*dy)
+    var penet = ball_a.size+ball_b.size-dist
+    if (penet > 0)
+    {
+        if (ball_a.hit < 225) {ball_a.hit += 30}
+        else {ball_a.hit = 255}
+        if (ball_b.hit < 255){ball_b.hit += 30}
+        else {ball_b.hit = 255}
+        ball_a.fx += dx*penet/dist*constant.elastic
+        ball_b.fx -= dx*penet/dist*constant.elastic
+        ball_a.fy += dy*penet/dist*constant.elastic
+        ball_b.fy -= dy*penet/dist*constant.elastic 
+    }
+}
+
 sim = new Object()
 sim.run = function () 
 {
@@ -47,28 +65,7 @@ sim.run = function ()
             // collision with another ball
             for (o = i+1; o < sim.list.length; o++)
             {
-                //alert('collision by ball i: '+i+' '+sim.list[i]+' o: '+o+' '+sim.list[o])
-                var dx = (sim.list[i].x-sim.list[o].x)
-                var dy = (sim.list[i].y-sim.list[o].y)
-                var dist = Math.sqrt(dx*dx + dy*dy)
-                var penet = sim.list[i].size+sim.list[o].size-dist
-                if (penet > 0)
-                {
-                    if (sim.list[i].hit < 225) {sim.list[i].hit += 30}
-                    else {sim.list[i].hit = 255}
-                    if (sim.list[o].hit < 255){sim.list[o].hit += 30}
-                    else {sim.list[o].hit = 255}
-                    sim.list[i].fx += dx*penet/dist*constant.elastic
-                    sim.list[o].fx -= dx*penet/dist*constant.elastic
-                    sim.list[i].fy += dy*penet/dist*constant.elastic
-                    sim.list[o].fy -= dy*penet/dist*constant.elastic 
-                }
-                else
-                {
-                    //alert('collision by ball i: '+i+' '+sim.list[i]+' o: '+o+' '+sim.list[o])
-                    //alert('dx: '+dx+' dx^2: '+(dx*dx)+' dy: '+dy+' dy^2: '+(dy*dy)+' \n '+'ball size i: '+sim.list[i].size +' ball size o: '+sim.list[o].size+' dist: '+dist)
-                }
-                    
+                apply_force_pair(sim.list[i], sim.list[o])                    
             }
                     
             // collision with the walls
