@@ -2,9 +2,9 @@
 
 # Introduction
 
-This is a simple mouse toy with coloured, bouncy balls. It is one of the programming projects I did when I was learning to program (in 2012). This toy I made while I was (supposed to be 🙂) studying for my university entrance exams.
+This is a simple mouse toy with coloured, bouncy balls. It is one of the programming projects I did when I was learning to program (in 2012), back when I was (supposed to be 🙂) studying for my university entrance exams.
 
-Recently (2020) I decided recover it from my Dropbox arhive, stick it on GitHub & give it some TLC.
+Recently (2020) I decided to recover it from my Dropbox arhive, stick it on GitHub & give it some TLC (documentation, CI, refactoring, etc.).
 
 ![usage-clip](usage-clip.gif)
 
