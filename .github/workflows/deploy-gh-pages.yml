@@ -27,6 +27,12 @@ jobs:
           npx parcel build index.html
           cp -r dist build
 
+      - uses: actions/upload-artifact@v2
+        name: Save build/ directory.
+        with:
+          name: build/
+          path: build
+
       - name: Deploy 🚀
         if: github.ref == 'refs/heads/master'
         uses: JamesIves/github-pages-deploy-action@3.5.9
