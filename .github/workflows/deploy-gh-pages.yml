@@ -19,10 +19,13 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: NPM install
+        uses: bahmutov/npm-install@v1
+
       - name: Move to build/ directory 🔧
         run: |
-          mkdir -p build
-          cp index.html balls.js build/.
+          npx parcel build index.html
+          cp -r dist build
 
       - name: Deploy 🚀
         if: github.ref == 'refs/heads/master'
