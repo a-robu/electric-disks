@@ -1,0 +1,24 @@
+{
+  "name": "electric-disks",
+  "version": "0.0.0",
+  "description": "This is a simple mouse toy with coloured, bouncy balls. It is one of the programming projects I did when I was learning to program (in 2012). This toy I made while I was (supposed to be 🙂) studying for my university entrance exams.",
+  "main": "N/A",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-robu/electric-disks.git"
+  },
+  "author": "Andrei D. Robu",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/a-robu/electric-disks/issues"
+  },
+  "homepage": "https://github.com/a-robu/electric-disks#readme",
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "jest": "^26.4.2",
+    "parcel": "^1.12.4"
+  }
+}
