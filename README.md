@@ -1,3 +1,5 @@
+![Build and Deploy](https://github.com/a-robu/electric-disks/workflows/Build%20and%20Deploy/badge.svg?branch=master)
+
 # Introduction
 
 This is a simple mouse toy with coloured, bouncy balls. It is one of the programming projects I did when I was learning to program (in 2012). This toy I made while I was (supposed to be 🙂) studying for my university entrance exams.
