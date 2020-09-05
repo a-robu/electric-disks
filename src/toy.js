@@ -1,5 +1,6 @@
 
 const Victor = require('victor');
+const Disk = require('./disk');
 
 var constant = new Object()
 constant.friction = 1.02
@@ -26,6 +27,11 @@ function ball(i, x, y)
     this.hit = 0.0
     this.size = 20 + Math.random() * 10
     this.mass = (this.size*this.size*3.14)/10
+}
+
+/** converts {width, height} to {x, y} */
+function dimensions_to_vec(dims) {
+    return new Victor(dims.width, dims.height)
 }
 
 function spawn_balls(n) {
@@ -60,13 +66,12 @@ function apply_force(vec, a_ball) {
     a_ball.fy += vec.y
 }
 
-function wall_force(ball) {
-    // collision with the walls
+function wall_force(ball, dimensions) {
     let f = new Victor(0, 0)
     if (ball.x - ball.size < 0)                 {f.x -= (ball.x - ball.size)*constant.elastic}
-    if (ball.x + ball.size > sim.canvas.width)  {f.x -= (ball.x +ball.size - sim.canvas.width)*constant.elastic}
+    if (ball.x + ball.size > dimensions.width)  {f.x -= (ball.x +ball.size - dimensions.width)*constant.elastic}
     if (ball.y - ball.size < 0)                 {f.y -= (ball.y - ball.size)*constant.elastic}
-    if (ball.y + ball.size > sim.canvas.height) {f.y -= (ball.y + ball.size - sim.canvas.height)*constant.elastic}
+    if (ball.y + ball.size > dimensions.height) {f.y -= (ball.y + ball.size - dimensions.height)*constant.elastic}
     return f
 }
 
@@ -111,7 +116,9 @@ sim.run = function ()
             {
                 apply_force_pair(sim.list[i], sim.list[o])                    
             }
-            apply_force(wall_force(sim.list[i]), sim.list[i])
+            // let wf = wall_force();
+            let wf = wall_force(sim.list[i], sim.canvas);
+            apply_force(wf, sim.list[i])
             apply_mouse_force(sim.list[i])
         }
 
@@ -156,3 +163,5 @@ sim.run = function ()
 
 exports.apply_force = apply_force
 exports.ball = ball
+exports.dimensions_to_vec = dimensions_to_vec
+exports.wall_force = wall_force
