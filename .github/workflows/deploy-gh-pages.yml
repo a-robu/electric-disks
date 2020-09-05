@@ -30,7 +30,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         name: Save build/ directory.
         with:
-          name: build/
+          name: build
           path: build
 
       - name: Deploy 🚀
