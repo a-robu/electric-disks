@@ -24,7 +24,7 @@ jobs:
 
       - name: Move to build/ directory 🔧
         run: |
-          npx parcel build index.html
+          npx parcel build index.html --public-url /${{ github.event.repository.name }}
           cp -r dist build
 
       - uses: actions/upload-artifact@v2
