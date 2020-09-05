@@ -27,14 +27,14 @@ describe('wall_force', () => {
     it('does not give it a force if it\'s in bounds', () => {
         let dims = {width: 200, height: 200}
         let disk_in_middle = Disk.from_legacy(new toy.ball(null, 100, 100))
-        let actual = toy.wall_force(disk_in_middle, dims)
+        let actual = toy.wall_force(disk_in_middle, toy.dimensions_to_vec(dims))
         expect(actual.magnitude()).toEqual(0)
     })
 
     it('pushes right if it went out the left', () => {
         let dims = {width: 200, height: 200}
         let disk_to_left = Disk.from_legacy(new toy.ball(null, -100, 100))
-        let actual = toy.wall_force(disk_to_left, dims)
+        let actual = toy.wall_force(disk_to_left, toy.dimensions_to_vec(dims))
         expect(actual.x > 0).toEqual(true)
     })
 })
