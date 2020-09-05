@@ -1,6 +1,6 @@
 
 const Victor = require("victor")
-const ball = require('./toy').ball
+const ball = require('./ball')
 
 class Disk {
     constructor(pos, vel, radius, hit=0) {
@@ -18,12 +18,12 @@ class Disk {
         return new Disk(pos, new Victor(0, -10), 20 + Math.random() * 10)
     }
 
-    static from_legacy(ball) {
+    static from_legacy(a_ball) {
         return new Disk(
-            new Victor(ball.x, ball.y),
-            new Victor(ball.dx, ball.dy),
-            ball.size,
-            ball.hit
+            new Victor(a_ball.x, a_ball.y),
+            new Victor(a_ball.dx, a_ball.dy),
+            a_ball.size,
+            a_ball.hit
         )
     }
 

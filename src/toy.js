@@ -1,6 +1,7 @@
 
 const Victor = require('victor');
 const Disk = require('./disk');
+const ball = require('./ball');
 
 var constant = new Object()
 constant.friction = 1.02
@@ -10,24 +11,6 @@ constant.time = 0.01
 constant.paused = false
 
 initial_balls = 100
-
-function ball(i, x, y)
-{
-    // this is the legacy version of representing the ball, without
-    // using vectors. the usage of this "class" is being replaced 
-    // by Disk. When the conversion is complete, this "class" will
-    // be deleted.
-    this.id = i
-    this.x = x
-    this.y = y
-    this.dx = 0.0
-    this.dy = -10.0
-    this.fx = 0.0
-    this.fy = 0.0
-    this.hit = 0.0
-    this.size = 20 + Math.random() * 10
-    this.mass = (this.size*this.size*3.14)/10
-}
 
 /** converts {width, height} to {x, y} */
 function dimensions_to_vec(dims) {
@@ -66,12 +49,13 @@ function apply_force(vec, a_ball) {
     a_ball.fy += vec.y
 }
 
-function wall_force(ball, dimensions) {
+function wall_force(disk, dimensions) {
+    let a_ball = disk.to_legacy()
     let f = new Victor(0, 0)
-    if (ball.x - ball.size < 0)                 {f.x -= (ball.x - ball.size)*constant.elastic}
-    if (ball.x + ball.size > dimensions.width)  {f.x -= (ball.x +ball.size - dimensions.width)*constant.elastic}
-    if (ball.y - ball.size < 0)                 {f.y -= (ball.y - ball.size)*constant.elastic}
-    if (ball.y + ball.size > dimensions.height) {f.y -= (ball.y + ball.size - dimensions.height)*constant.elastic}
+    if (a_ball.x - a_ball.size < 0)                 {f.x -= (a_ball.x - a_ball.size)*constant.elastic}
+    if (a_ball.x + a_ball.size > dimensions.width)  {f.x -= (a_ball.x +a_ball.size - dimensions.width)*constant.elastic}
+    if (a_ball.y - a_ball.size < 0)                 {f.y -= (a_ball.y - a_ball.size)*constant.elastic}
+    if (a_ball.y + a_ball.size > dimensions.height) {f.y -= (a_ball.y + a_ball.size - dimensions.height)*constant.elastic}
     return f
 }
 
@@ -117,7 +101,7 @@ sim.run = function ()
                 apply_force_pair(sim.list[i], sim.list[o])                    
             }
             // let wf = wall_force();
-            let wf = wall_force(sim.list[i], sim.canvas);
+            let wf = wall_force(Disk.from_legacy(sim.list[i]), sim.canvas);
             apply_force(wf, sim.list[i])
             apply_mouse_force(sim.list[i])
         }

@@ -1,10 +1,12 @@
 
 const Victor = require('victor');
-const toy = require('./toy')
+const Disk = require('./disk');
+const toy = require('./toy');
+const ball = require('./ball');
 
 describe('apply_force', () => {
     it('modifies a legacy ball\'s running tally of "force"', () => {
-        let a_ball = new toy.ball(null, 0, 0)
+        let a_ball = new ball(null, 0, 0)
         a_ball.fx = 3
         a_ball.fy = 4
         toy.apply_force(new Victor(100, 200), a_ball)
@@ -23,8 +25,16 @@ describe('dimensions_to_vec', () => {
 
 describe('wall_force', () => {
     it('does not give it a force if it\'s in bounds', () => {
-        toy.wall_force(
-            new toy.ball(null, 0, 0),
-            {width: 200, height: 200})
+        let dims = {width: 200, height: 200}
+        let disk_in_middle = Disk.from_legacy(new toy.ball(null, 100, 100))
+        let actual = toy.wall_force(disk_in_middle, dims)
+        expect(actual.magnitude()).toEqual(0)
+    })
+
+    it('pushes right if it went out the left', () => {
+        let dims = {width: 200, height: 200}
+        let disk_to_left = Disk.from_legacy(new toy.ball(null, -100, 100))
+        let actual = toy.wall_force(disk_to_left, dims)
+        expect(actual.x > 0).toEqual(true)
     })
 })
