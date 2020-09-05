@@ -1,3 +1,9 @@
+
+// This does not do anything, other than prove
+// the build process is working.
+const Vec2 = require('./vec2');
+(new Vec2(1, 0));
+
 var constant = new Object()
 constant.friction = 1.02
 constant.elastic = 2000
