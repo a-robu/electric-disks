@@ -5,9 +5,7 @@
 name: Build and Deploy
 
 on:
-  push:
-    branches:
-      - master
+  push
 
 jobs:
   build-and-deploy:
@@ -27,6 +25,7 @@ jobs:
           cp index.html balls.js build/.
 
       - name: Deploy 🚀
+        if: github.ref == 'refs/heads/master'
         uses: JamesIves/github-pages-deploy-action@3.5.9
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
