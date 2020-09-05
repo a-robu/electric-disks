@@ -45,6 +45,37 @@ function apply_force_pair(ball_a, ball_b) {
     }
 }
 
+function apply_wall_force(ball) {
+    // collision with the walls
+    if (ball.x - ball.size < 0)                 {ball.fx -= (ball.x - ball.size)*constant.elastic}
+    if (ball.x + ball.size > sim.canvas.width)  {ball.fx -= (ball.x +ball.size - sim.canvas.width)*constant.elastic}
+    if (ball.y - ball.size < 0)                 {ball.fy -= (ball.y - ball.size)*constant.elastic}
+    if (ball.y + ball.size > sim.canvas.height) {ball.fy -= (ball.y + ball.size - sim.canvas.height)*constant.elastic}
+}
+
+function apply_mouse_force(ball) {
+    var dx = (ball.x-sim.mouse_x)
+    var dy = (ball.y-sim.mouse_y)
+    var dist = Math.sqrt(dx*dx + dy*dy)
+    var penet = 100-dist
+    if (penet > 0)
+    {
+        ball.fx += dx*penet/dist*constant.elastic     // add a suck variable with -1 or +1 value
+        ball.fy += dy*penet/dist*constant.elastic
+    }
+}
+
+function update_vel_reset_force(ball) {
+    ball.dx += ball.fx/ball.mass*constant.time
+    ball.dy += ball.fy/ball.mass*constant.time
+    ball.dx = ball.dx/constant.friction
+    ball.dy = ball.dy/constant.friction
+    ball.x += ball.dx
+    ball.y += ball.dy
+    ball.fy = constant.gravity*ball.mass
+    ball.fx = 0.0
+}
+
 sim = new Object()
 sim.run = function () 
 {
@@ -67,36 +98,16 @@ sim.run = function ()
             {
                 apply_force_pair(sim.list[i], sim.list[o])                    
             }
-                    
-            // collision with the walls
-            if (sim.list[i].x - sim.list[i].size < 0)                 {sim.list[i].fx -= (sim.list[i].x - sim.list[i].size)*constant.elastic}
-            if (sim.list[i].x + sim.list[i].size > sim.canvas.width)  {sim.list[i].fx -= (sim.list[i].x +sim.list[i].size - sim.canvas.width)*constant.elastic}
-            if (sim.list[i].y - sim.list[i].size < 0)                 {sim.list[i].fy -= (sim.list[i].y - sim.list[i].size)*constant.elastic}
-            if (sim.list[i].y + sim.list[i].size > sim.canvas.height) {sim.list[i].fy -= (sim.list[i].y + sim.list[i].size - sim.canvas.height)*constant.elastic}
 
-            // collision with mouse
-            var dx = (sim.list[i].x-sim.mouse_x)
-            var dy = (sim.list[i].y-sim.mouse_y)
-            var dist = Math.sqrt(dx*dx + dy*dy)
-            var penet = 100-dist
-            if (penet > 0)
-            {
-                sim.list[i].fx += dx*penet/dist*constant.elastic     // add a suck variable with -1 or +1 value
-                sim.list[i].fy += dy*penet/dist*constant.elastic
-            }
+            apply_wall_force(sim.list[i])
+            apply_mouse_force(sim.list[i])
         }
 
+        
         // apply forces and clear them
         for (i in sim.list)
         {
-            sim.list[i].dx += sim.list[i].fx/sim.list[i].mass*constant.time
-            sim.list[i].dy += sim.list[i].fy/sim.list[i].mass*constant.time
-            sim.list[i].dx = sim.list[i].dx/constant.friction
-            sim.list[i].dy = sim.list[i].dy/constant.friction
-            sim.list[i].x += sim.list[i].dx
-            sim.list[i].y += sim.list[i].dy
-            sim.list[i].fy = constant.gravity*sim.list[i].mass
-            sim.list[i].fx = 0.0
+            update_vel_reset_force(sim.list[i])
         }
         
         // clear screen
