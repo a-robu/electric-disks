@@ -27,6 +27,13 @@ function ball(i, x, y)
     this.mass = (this.size*this.size*3.14)/10
 }
 
+function spawn_balls(n) {
+    for (i=0; i < n; i++)
+    {
+        sim.list.push(new ball(i, Math.random()*sim.canvas.width, Math.random()*sim.canvas.height))
+    }
+}
+
 function apply_force_pair(ball_a, ball_b) {
     var dx = (ball_a.x-ball_b.x)
     var dy = (ball_a.y-ball_b.y)
@@ -85,10 +92,7 @@ sim.run = function ()
     sim.canvas.width = window.innerWidth
     sim.canvas.height = window.innerHeight
     sim.list = new Array
-    for (i=0; i < initial_balls; i++)
-    {
-        sim.list.push(new ball(i, Math.random()*sim.canvas.width, Math.random()*sim.canvas.height))
-    }
+    spawn_balls(initial_balls)
     sim.update = function ()
     {
         for (i = 0; i < sim.list.length; i++)
