@@ -1,5 +1,5 @@
 
-const Victor = require('victor');
+const Victor = require('@a-robu/victor');
 const Disk = require('./disk');
 const ball = require('./ball');
 

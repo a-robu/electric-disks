@@ -1,5 +1,5 @@
 
-const Victor = require("victor")
+const Victor = require("@a-robu/victor")
 const ball = require('./ball')
 
 class Disk {

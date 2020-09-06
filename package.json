@@ -22,6 +22,6 @@
     "parcel": "^1.12.4"
   },
   "dependencies": {
-    "victor": "^1.1.0"
+    "@a-robu/victor": "^2.0.0"
   }
 }
