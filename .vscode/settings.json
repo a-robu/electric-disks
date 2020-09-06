@@ -1,0 +1,6 @@
+{
+    // This evil feature decides to automatically import describe() from
+    // the "nargs" package, overriding the Jest describe() function and
+    // breaking my unit tests in a sneaky way.
+    "javascript.suggest.autoImports": false
+}
