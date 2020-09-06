@@ -10,7 +10,7 @@ Recently (2020) I decided to recover it from my Dropbox arhive, stick it on GitH
 
 # Playing with the Toy
 
-Navigate to https://andreirobu.uk/electric-disks/ to play with the toy.
+Navigate to https://a-robu.github.io/electric-disks/ to play with the toy.
 
 The interactions available to the player are the following:
 - Move the mouse to nudge the balls.
