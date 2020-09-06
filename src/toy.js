@@ -49,9 +49,25 @@ function apply_force(vec, a_ball) {
     a_ball.fy += vec.y
 }
 
+/** one dimensional version of wall_force(), assumes wall is left wall */
+function left_wall_force(pos_x, radius, elastic_constant=constant.elastic) {
+    let edge_at = pos_x - radius
+    if (edge_at < 0) {
+        return Math.abs(edge_at) * elastic_constant
+    }
+    return 0
+}
+
 function wall_force(disk, dimensions) {
     let a_ball = disk.to_legacy()
     let f = new Victor(0, 0)
+    // Here, we plan to exploit some symmetry in the problem.
+    // The bounce happens the same way regardless of which wall the
+    // ball bounces from, so we iterate over all walls.
+    // We do this iteration by selecting the x or y dimension
+    // then whether it's the nearside or farside wall.
+    // So, we will rotate the room four times in 90deg increments,
+    // then use the call left_wall_force() in that rotated room.
     if (a_ball.x - a_ball.size < 0) {
         f.x -= (a_ball.x - a_ball.size)*constant.elastic
     }
@@ -153,6 +169,7 @@ sim.run = function ()
 }
 
 exports.apply_force = apply_force
+exports.left_wall_force = left_wall_force
 exports.ball = ball
 exports.dimensions_to_vec = dimensions_to_vec
 exports.wall_force = wall_force

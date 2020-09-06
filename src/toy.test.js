@@ -23,6 +23,25 @@ describe('dimensions_to_vec', () => {
     })
 })
 
+describe('left_wall_force', () => {
+    it('big ball not touching wall, no force', () => {
+        expect(toy.left_wall_force(1000, 999)).toEqual(0)
+    })
+    it('small close ball not touching wall, no force', () => {
+        expect(toy.left_wall_force(3, 2)).toEqual(0)
+    })
+    it('small far ball not touching wall, no force', () => {
+        expect(toy.left_wall_force(1000, 2)).toEqual(0)
+    })
+    it('returns amount of penetration (px) in wall', () => {
+        expect(toy.left_wall_force(10, 20, 1)).toEqual(10)
+        expect(toy.left_wall_force(50, 120, 1)).toEqual(120 - 50)
+    })
+    it('it returns a doubled force for a doubled elastic constant', () => {
+        expect(toy.left_wall_force(50, 100, 2)).toEqual(50 * 2)
+    })
+})
+
 describe('wall_force', () => {
     it('does not give it a force if it\'s in bounds', () => {
         let dims = {width: 200, height: 200}
