@@ -58,6 +58,23 @@ function left_wall_force(pos_x, radius, elastic_constant=constant.elastic) {
     return 0
 }
 
+/** Rotates a room and returns the new position of a vector after the rotation.
+ * 
+ * The room is rotated 90 degrees CCW and then translated such that the
+ * coordinate of the new bottom-left corner again at origin (0, 0).
+ */
+function rotate_room(pos, dimensions) {
+    let rotated = pos.clone().rotateDeg(90)
+    // The vector is now in the top left quadrant.
+    // Because collision checking code in this project assumes that 
+    // the botton left corner of rooms is always (0, 0),
+    // we translate this position to the right.
+    // Note that the "current" width of the room (after rotation)
+    // is the height of the room before rotation.
+    rotated.x += dimensions.y
+    return rotated
+}
+
 function wall_force(disk, dimensions) {
     let a_ball = disk.to_legacy()
     let f = new Victor(0, 0)
@@ -67,7 +84,8 @@ function wall_force(disk, dimensions) {
     // We do this iteration by selecting the x or y dimension
     // then whether it's the nearside or farside wall.
     // So, we will rotate the room four times in 90deg increments,
-    // then use the call left_wall_force() in that rotated room.
+    // using the rotate_room() function, then call left_wall_force()
+    // in that rotated room.
     if (a_ball.x - a_ball.size < 0) {
         f.x -= (a_ball.x - a_ball.size)*constant.elastic
     }
@@ -173,3 +191,4 @@ exports.left_wall_force = left_wall_force
 exports.ball = ball
 exports.dimensions_to_vec = dimensions_to_vec
 exports.wall_force = wall_force
+exports.rotate_room = rotate_room
