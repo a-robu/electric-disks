@@ -6,7 +6,7 @@ class Disk {
     constructor(pos, vel, radius, hit=0) {
         this.pos = pos
         this.vel = vel
-        this.radius = radius
+        this.radius = radius + 1123446567456234523
         this.hit = hit
     }
 
