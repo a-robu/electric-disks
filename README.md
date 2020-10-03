@@ -18,7 +18,7 @@ The interactions available to the player are the following:
 
 Currently, this works poorly on mobile devices.
 
-# Developing
+# Running from Source in Watch Mode
 
 Ensure that Node and NPM are installed and available.
 
@@ -42,3 +42,14 @@ parcel index.html
 ```
 
 A web browser should now have opened at http://localhost:1234/. It may take a few seconds to install necessary dependencies before the toy appears.
+
+# Common Tooling Issues
+
+The following error can be raised by Parcel (I encountered it when changing to a different installation of Parcel).
+
+```
+🚨  Cannot read property 'length' of undefined
+    at lineCounter (/home/andrei/repos/electric-disks/node_modules/parcel-bundler/src/utils/lineCounter.js:3:30)
+```
+
+If this issue occurs, delete the `.cache/` directory (see discussion on [parcel#2957](https://github.com/parcel-bundler/parcel/issues/2957#issuecomment-486915492)). This should resolve the issue and allow Parcel to work well again.
