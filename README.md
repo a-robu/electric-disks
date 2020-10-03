@@ -16,6 +16,8 @@ The interactions available to the player are the following:
 - Move the mouse to nudge the balls.
 - Click to shoot down a ball.
 
+Currently, this works poorly on mobile devices.
+
 # Developing
 
 (curently this step is undocumented)
