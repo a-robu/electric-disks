@@ -18,7 +18,7 @@ The interactions available to the player are the following:
 
 Currently, this works poorly on mobile devices.
 
-# Running from Source in Watch Mode
+# Setting Up
 
 Ensure that Node and NPM are installed and available.
 
@@ -29,19 +29,20 @@ $ npm --version
 6.14.6
 ```
 
-Install Parcel with the following command.
+Install the NPM dependencies.
 
 ```bash
-npm install -g parcel-bundler
+npm install
 ```
 
-Now, serve the project in development mode with Parcel.
+# Developing
 
-```bash
-parcel index.html
-```
+The following commands are useful when developing.
 
-A web browser should now have opened at http://localhost:1234/. It may take a few seconds to install necessary dependencies before the toy appears.
+| Command | Description |
+|---------|-------------|
+| `npm run serve` | Runs the development server in watch mode, usually on http://localhost:1234/. |
+| `npm run watch-test` | Runs unit tests in watch mode. |
 
 # Common Tooling Issues
 
