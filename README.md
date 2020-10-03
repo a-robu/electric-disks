@@ -1,4 +1,5 @@
 ![Build and Deploy](https://github.com/a-robu/electric-disks/workflows/Build%20and%20Deploy/badge.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/a-robu/electric-disks/badge.svg?branch=master)](https://coveralls.io/github/a-robu/electric-disks?branch=master)
 
 # Introduction
 
