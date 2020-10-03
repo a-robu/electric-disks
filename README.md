@@ -44,6 +44,12 @@ The following commands are useful when developing.
 | `npm run serve` | Runs the development server in watch mode, usually on http://localhost:1234/. |
 | `npm run watch-test` | Runs unit tests in watch mode. |
 
+If the `tmux` program is present on your machine, it is possible to setup a _tmux_ window with these commands running in separate panes by running the following commmand.
+
+```bash
+npm run watch-all
+```
+
 # Common Tooling Issues
 
 The following error can be raised by Parcel (I encountered it when changing to a different installation of Parcel).

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "serve": "parcel index.html",
-    "watch-test": "jest --watchAll"
+    "watch-test": "jest --watchAll",
+    "watch-all": "./tmux-sync.sh electric-disks-watch 'npm run serve' 'npm run watch-test'"
   },
   "repository": {
     "type": "git",
