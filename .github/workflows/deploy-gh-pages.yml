@@ -19,16 +19,16 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: NPM install
+      - name: NPM install 🚛
         uses: bahmutov/npm-install@v1
 
-      - name: Move to build/ directory 🔧
+      - name: Run Parcel Build 📦
         run: |
           npx parcel build index.html --public-url /${{ github.event.repository.name }}
           cp -r dist build
 
-      - uses: actions/upload-artifact@v2
-        name: Save build/ directory.
+      - name: Save build/ directory. ☁️
+        uses: actions/upload-artifact@v2 
         with:
           name: build
           path: build
