@@ -21,6 +21,10 @@ jobs:
 
       - name: NPM install 🚛
         uses: bahmutov/npm-install@v1
+        
+      - name: Run Unit Tests ✔️
+        run: |
+          npm test
 
       - name: Run Parcel Build 📦
         run: |
