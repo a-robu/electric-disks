@@ -18,8 +18,25 @@ The interactions available to the player are the following:
 
 # Developing
 
-(curently this step is undocumented)
+Ensure that Node and NPM are installed and available.
+
+```bash
+$ node --version
+v12.18.4
+$ npm --version
+6.14.6
+```
+
+Install Parcel with the following command.
+
+```bash
+npm install -g parcel-bundler
+```
+
+Now, serve the project in development mode with Parcel.
 
 ```bash
 parcel index.html
 ```
+
+A web browser should now have opened at http://localhost:1234/. It may take a few seconds to install necessary dependencies before the toy appears.
