@@ -24,7 +24,7 @@ jobs:
         
       - name: Run Unit Tests ✔️
         run: |
-          npx jest --coverage
+          npx jest src --coverage
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
