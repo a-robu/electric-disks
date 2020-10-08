@@ -7,7 +7,8 @@
     "test": "jest",
     "serve": "parcel index.html",
     "watch-test": "jest --watchAll",
-    "watch-all": "./tmux-sync.sh electric-disks-watch 'npm run serve' 'npm run watch-test'"
+    "watch-all": "./tmux-sync.sh electric-disks-watch 'npm run serve' 'npm run watch-test'",
+    "build-prod": "parcel build index.html --out-dir=./build --public-url ${PUBLIC_URL:-/placeholder-path}"
   },
   "repository": {
     "type": "git",

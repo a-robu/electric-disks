@@ -33,8 +33,7 @@ jobs:
 
       - name: Run Parcel Build 📦
         run: |
-          npx parcel build index.html --public-url /${{ github.event.repository.name }}
-          cp -r dist build
+          PUBLIC_URL=/${{ github.event.repository.name }} npm build-prod
 
       - name: Save build/ directory. ☁️
         uses: actions/upload-artifact@v2 
