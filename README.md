@@ -66,6 +66,15 @@ npm run build-prod
 npm run serve-prod
 ```
 
+Alternatively, automatically test the production build, run the following commands.
+
+```bash
+npm run build-prod
+npm run test-prod-smoke
+```
+
+Currently, this simply checks that there are no JS errors when running the production build in a browser. These tests are also included in the CI pipeline.
+
 # Common Tooling Issues
 
 The following error can be raised by Parcel (I encountered it when changing to a different installation of Parcel).
