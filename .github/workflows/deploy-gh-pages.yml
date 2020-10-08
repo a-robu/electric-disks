@@ -41,6 +41,11 @@ jobs:
           name: build
           path: build
 
+      - name: Smoke Tests
+        run: |
+          npm run build-prod
+          npm run test-prod-smoke
+
       - name: Deploy 🚀
         if: github.ref == 'refs/heads/master'
         uses: JamesIves/github-pages-deploy-action@3.5.9
