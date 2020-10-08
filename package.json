@@ -8,7 +8,8 @@
     "serve": "parcel index.html",
     "watch-test": "jest --watchAll",
     "watch-all": "./tmux-sync.sh electric-disks-watch 'npm run serve' 'npm run watch-test'",
-    "build-prod": "parcel build index.html --out-dir=./build --public-url ${PUBLIC_URL:-/placeholder-path}"
+    "build-prod": "parcel build index.html --out-dir=./build --public-url ${PUBLIC_URL:-/placeholder-path}",
+    "serve-prod": "serve --config serve-prod.json"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "parcel-bundler": "^1.12.4"
   },
   "dependencies": {
-    "@a-robu/victor": "^2.0.0"
+    "@a-robu/victor": "^2.0.0",
+    "serve": "^11.3.2"
   }
 }

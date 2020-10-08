@@ -1,0 +1,16 @@
+{
+  "public": "build",
+  "rewrites": [
+    {
+      "source": "/placeholder-path",
+      "destination": "index.html"
+    },
+    {
+      "source": "/placeholder-path/:path",
+      "destination": ":path"
+    }
+  ],
+  "redirects": [
+    { "source": "/", "destination": "/placeholder-path" }
+  ]
+}

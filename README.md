@@ -51,6 +51,21 @@ If the `tmux` program is present on your machine, it is possible to setup a _tmu
 npm run watch-all
 ```
 
+# Testing
+
+To run the unit tests, run the following command.
+
+```bash
+npm test
+```
+
+To manually test the production build, run the followng.
+
+```bash
+npm run build-prod
+npm run serve-prod
+```
+
 # Common Tooling Issues
 
 The following error can be raised by Parcel (I encountered it when changing to a different installation of Parcel).
