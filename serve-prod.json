@@ -2,15 +2,15 @@
   "public": "build",
   "rewrites": [
     {
-      "source": "/placeholder-path",
+      "source": "/electric-disks",
       "destination": "index.html"
     },
     {
-      "source": "/placeholder-path/:path",
+      "source": "/electric-disks/:path",
       "destination": ":path"
     }
   ],
   "redirects": [
-    { "source": "/", "destination": "/placeholder-path" }
+    { "source": "/", "destination": "/electric-disks" }
   ]
 }

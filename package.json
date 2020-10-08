@@ -8,7 +8,7 @@
     "serve": "parcel index.html",
     "watch-test": "jest src --watchAll",
     "watch-all": "./tmux-sync.sh electric-disks-watch 'npm run serve' 'npm run watch-test'",
-    "build-prod": "parcel build index.html --out-dir=./build --public-url ${PUBLIC_URL:-/placeholder-path}",
+    "build-prod": "parcel build index.html --out-dir=./build --public-url /electric-disks",
     "test-prod-smoke": "jest integration-tests --config jest-use-puppeteer.config.js",
     "serve-prod": "serve --config serve-prod.json"
   },
